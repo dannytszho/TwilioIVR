@@ -1,0 +1,28 @@
+{
+  "name": "twilioivr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier --write \"src/**/*.{js,jsx}\"",
+    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "author": "Danny Tsui",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "twilio": "^3.71.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.0",
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "eslint": "^7.18.0",
+    "eslint-config-prettier": "^8.1.0",
+    "prettier": "^2.4.1"
+  }
+}
