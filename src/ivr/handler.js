@@ -35,18 +35,30 @@ exports.action = function action(digit) {
   }
 };
 
-function leaveMessage() {
+function leaveMessage(hasMessage) {
   const twiml = new VoiceResponse();
-  twiml.say("Hello. Please leave a message after the beep.");
-  // Use <Record> to record and transcribe the caller's message
-  twiml.record({ transcribe: true, maxLength: 30 });
 
-  // End the call with <Hangup>
-  twiml.hangup();
+  if (!hasMessage) {
+    twiml.say(
+      "Hello. Please leave a message after the beep.\nPress the star key when finished.'"
+    );
+    // Use <Record> to record and transcribe the caller's message
+    twiml.record({
+      action: "/ivr/message",
+      method: "POST",
+      transcribe: true,
+      timeout: 5,
+      finishOnKey: "*",
+    });
+  } else {
+    twiml.say("Your message has been recorded. GoodBye");
+    twiml.hangup();
+  }
 
   console.log(twiml.toString());
-  return twiml.toString();
+  return twiml.hangup().toString();
 }
+exports.leaveMessage = leaveMessage;
 
 function redirectWelcome() {
   const twiml = new VoiceResponse();
